@@ -1,5 +1,5 @@
 {
-  "name": "threetemplate",
+  "name": "scroll",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,10 +9,10 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^4.4.9"
+    "vite": "^4.4.5"
   },
   "dependencies": {
     "dat.gui": "^0.7.9",
-    "three": "^0.154.0"
+    "three": "^0.155.0"
   }
 }
