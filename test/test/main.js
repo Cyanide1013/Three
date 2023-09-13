@@ -43,7 +43,7 @@ const gui= new dat.GUI();
 const axesHelper = new THREE.AxesHelper();
 const gridHelper = new THREE.GridHelper(200,200, 0xffffff);
 
-axesHelper.visible= false;
+axesHelper.visible= true;
 gridHelper.visible= false;
 //helper gui
 const axesGUI = gui.addFolder('Axes Helper');
