@@ -14,20 +14,33 @@ camera.position.set(4,3,4);
 
 //renderer
 const renderer = new THREE.WebGLRenderer({
-  canvas: document.querySelector('#bg')
+  canvas: document.querySelector('#bg'),
+  alpha: true, // Enable transparency
+  antialias: true
 });
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
+// Set clear color with alpha 0
+renderer.setClearColor(0x000000, 0);
 //render
 renderer.render(scene,camera);
 
 //orbit controls
 const orbitControls = new OrbitControls(camera,renderer.domElement);
 
-//animate function (important)
+//orbit smooth mouse
+orbitControls.enableDamping = true; // Add smooth rotation/pan
+orbitControls.dampingFactor = 0.03; // Adjust damping intensity (0.01-0.1)
+orbitControls.rotateSpeed = 0.4;    // Slower rotation speed
+orbitControls.panSpeed = 0.5;       // Slower pan speed
+orbitControls.screenSpacePanning = true; // Better pan behavior
 
+//animate function (important)
+let clock = new THREE.Clock();
 function animate(){
+  const delta = clock.getDelta();
   requestAnimationFrame(animate);
+  orbitControls.update(delta); // Update with delta time
   renderer.render(scene,camera);
   orbitControls.update();
 }
@@ -70,7 +83,7 @@ sphereGUI.add(sphereMat, 'metalness').max(1).min(0).step(0.1)
 const hdriLoader = new RGBELoader();
 
 // Array of available HDRIs
-const hdriFiles = ['test1.hdr', 'test2.hdr', 'test3.hdr', 'test4.hdr'];
+const hdriFiles = ['test1.hdr', 'test2.hdr', 'test3.hdr', 'test4.hdr', 'test5.hdr'];
 let currentHDRIIndex = 0;
 
 const hdriFolder = gui.addFolder('Change HDRI');
